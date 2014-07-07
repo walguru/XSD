@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
    <xs:schema id="LogControllerV2"
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="http://tempuri.org/Logcontroller.xsd"
+        targetNamespace="https://github.com/walguru/XSD/blob/master/LogControllerV2.xsd"
         >
+    <xs:element name="LogController">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TextProviders"  maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="TextProvider" minOccurs="1"   >
+                                <xs:complexType>
+                                    <xs:all>
+
+                                    </xs:all>
+
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="id" type="xs:string" />
+                        <xs:attribute name="enabled" type="xs:boolean"/>
+                    </xs:complexType>
+
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
    </xs:schema>
