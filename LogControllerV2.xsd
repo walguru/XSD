@@ -2,6 +2,8 @@
    <xs:schema id="LogControllerV2"
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
         targetNamespace="https://github.com/walguru/XSD/blob/master/LogControllerV2.xsd"
+		xmlns="https://github.com/walguru/XSD/blob/master/LogControllerV2.xsd"
+		xmlns:mstns="https://github.com/walguru/XSD/blob/master/LogControllerV2.xsd"
         >
     <xs:element name="LogController">
         <xs:complexType>
@@ -32,7 +34,7 @@
                                             <xs:complexType>
                                                 <xs:all>
                                                     <xs:element name="path" maxOccurs="1" minOccurs="1" type="xs:string"/>
-                                                    <xs:element name="buffer" maxOccurs="1"type="xs:integer" default="2048"/>
+                                                    <xs:element name="buffer" maxOccurs="1" type="xs:integer" default="2048"/>
                                                     <xs:element name="FolderFormat" maxOccurs="1" minOccurs="1">
                                                         <xs:simpleType>
                                                             <xs:restriction base="xs:string">
@@ -44,7 +46,13 @@
                                                     </xs:element>
                                                     <xs:element name="LogName" maxOccurs="1" minOccurs="1" type="xs:string"/>
                                                     <xs:element name="extension" maxOccurs="1" minOccurs="1"/>
-                                                    <xs:element name="TypesToCatch" maxOccurs="1" minOccurs="1"/>
+                                                    <xs:element name="TypesToCatch" maxOccurs="1" minOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:sequence maxOccurs="unbounded" minOccurs="1" >
+                                                                <xs:element name="CatchType" maxOccurs="unbounded" type="xs:string" />
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
 
                                                 </xs:all>
                                             </xs:complexType>
