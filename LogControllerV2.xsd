@@ -6,20 +6,64 @@
     <xs:element name="LogController">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="TextProviders"  maxOccurs="1">
+                <xs:element name="TextProviders" maxOccurs="unbounded">
                     <xs:complexType>
-                        <xs:all>
-                            <xs:element name="TextProvider" minOccurs="1"   >
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="TextProvider" minOccurs="0" maxOccurs="10"   >
                                 <xs:complexType>
                                     <xs:all>
+                                        <xs:element name="MessageBuild" maxOccurs="1" minOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="Order" minOccurs="3" maxOccurs="3">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="DateTime"/>
+                                                                <xs:enumeration value="EventType"/>
+                                                                <xs:enumeration value="Message"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
 
+                                        </xs:element>
+                                        <xs:element name="Location" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element name="path" maxOccurs="1" minOccurs="1" type="xs:string"/>
+                                                    <xs:element name="buffer" maxOccurs="1"type="xs:integer" default="2048"/>
+                                                    <xs:element name="FolderFormat" maxOccurs="1" minOccurs="1">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:enumeration value="YYYYWW" />
+                                                                <xs:enumeration value="WWYYYY" />
+                                                                <xs:enumeration value="YYYY/WW" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="LogName" maxOccurs="1" minOccurs="1" type="xs:string"/>
+                                                    <xs:element name="extension" maxOccurs="1" minOccurs="1"/>
+                                                    <xs:element name="TypesToCatch" maxOccurs="1" minOccurs="1"/>
+
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="CleaningRules" minOccurs="1" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element name="EnableCleaning" maxOccurs="1" type="xs:boolean" default="true"/>
+                                                    <xs:element name="WeeksToKeepLog" maxOccurs="1" type="xs:int" default="2"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
                                     </xs:all>
-
+                                    <xs:attribute name="id" type="xs:string" />
+                                    <xs:attribute name="enabled" type="xs:boolean"/>
                                 </xs:complexType>
                             </xs:element>
-                        </xs:all>
-                        <xs:attribute name="id" type="xs:string" />
-                        <xs:attribute name="enabled" type="xs:boolean"/>
+                        </xs:choice>
+
                     </xs:complexType>
 
                 </xs:element>
